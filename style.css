@@ -1,182 +1,148 @@
-/* Загальні стилі */
+/* Загальні налаштування */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
   background: #f9f9f9;
+  margin: 0;
   color: #333;
   line-height: 1.6;
-  scroll-behavior: smooth;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
+header {
+  background: #004d40;
+  color: #fff;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-style: italic;
 }
 
 /* Навігація */
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: #2980b9;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  z-index: 1000;
+nav {
+  background: #00796b;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-}
-
-.logo {
-  color: white;
-  font-weight: 700;
-  font-size: 1.4rem;
-  text-decoration: none;
-}
-
-.nav-links {
+nav ul {
   list-style: none;
-  display: flex;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.nav-links li {
-  margin-left: 20px;
+nav li {
+  margin: 0;
 }
 
-.nav-link {
-  color: white;
+nav a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: #b2dfdb;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 8px 6px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  background-color: rgba(255, 255, 255, 0.3);
+nav a:hover,
+nav a.active {
+  background: #004d40;
+  color: #fff;
 }
 
-/* Кнопка меню для мобільних */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Основний контент з відступом зверху під фіксоване меню */
-main.container {
-  padding-top: 80px;
-}
-
-/* Секції */
-section {
+/* Основний контент */
+main {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
   background: #fff;
-  margin-bottom: 30px;
-  padding: 25px 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-h1 {
-  margin-bottom: 15px;
-  color: #2c3e50;
+/* Секції - за замовчуванням приховані */
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
 }
 
 h2 {
-  margin-top: 20px;
-  margin-bottom: 12px;
-  border-bottom: 2px solid #2980b9;
-  padding-bottom: 6px;
-  color: #2c3e50;
+  color: #00796b;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #004d40;
+  padding-bottom: 0.25rem;
 }
 
-h3 {
-  color: #34495e;
-}
-
-ul {
-  padding-left: 20px;
+/* Списки */
+ul, ol, dl {
+  margin-left: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 li {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
-.faq-item {
-  margin-bottom: 15px;
+/* Кнопки допомоги */
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.faq-item strong {
-  display: block;
-  margin-bottom: 4px;
-  color: #34495e;
-}
-
-footer {
+.btn {
+  flex: 1 1 250px;
+  background: #004d40;
+  color: #fff;
+  padding: 0.75rem 1rem;
   text-align: center;
-  font-size: 0.9em;
-  color: #666;
-  padding: 15px 20px;
-  border-top: 1px solid #ddd;
-  background: #f0f0f0;
-  margin-top: 30px;
-}
-
-.partners, .useful-links {
-  margin-top: 10px;
-}
-
-.partners a, .useful-links a {
-  display: inline-block;
-  margin-right: 12px;
-  color: #2980b9;
+  border-radius: 5px;
   text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
-.partners a:hover, .useful-links a:hover {
-  text-decoration: underline;
+.btn:hover {
+  background: #00796b;
+}
+
+/* Footer */
+footer {
+  background: #004d40;
+  color: #b2dfdb;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.15);
 }
 
 /* Адаптивність */
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 60px;
-    right: -100%;
-    width: 200px;
-    height: calc(100% - 60px);
-    background-color: #2980b9;
+@media (max-width: 600px) {
+  nav ul {
     flex-direction: column;
-    padding-top: 20px;
-    transition: right 0.3s ease;
-    z-index: 999;
   }
-  .nav-links.open {
-    right: 0;
+  
+  .buttons-container {
+    flex-direction: column;
   }
-  .nav-links li {
-    margin: 15px 0;
-    margin-left: 0;
-  }
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* Плавний скролл для старих браузерів (якщо треба) */
-html {
-  scroll-behavior: smooth;
 }
