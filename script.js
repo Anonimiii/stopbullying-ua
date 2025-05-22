@@ -1,43 +1,21 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  const navLinkItems = document.querySelectorAll('.nav-link');
-
-  // Відкриття/закриття меню на мобільних
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  // Закрити меню після кліку на пункт (для мобільних)
-  navLinkItems.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-    });
-  });
-
-  // Підсвічування активного пункту меню при скролі
+  const menuLinks = document.querySelectorAll('.menu-link');
   const sections = document.querySelectorAll('section');
-  const navLinksArray = Array.from(navLinkItems);
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollY = window.pageYOffset;
+  menuLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.clientHeight;
+      // Відключити всі активні класи в меню і секціях
+      menuLinks.forEach(l => l.classList.remove('active'));
+      sections.forEach(sec => sec.classList.remove('active'));
 
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinksArray.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+      // Включити активний клас на поточному меню та секції
+      link.classList.add('active');
+      const targetId = link.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.classList.add('active');
       }
     });
   });
